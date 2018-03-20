@@ -1,0 +1,20 @@
+#Server Config
+server:
+  port: 10000
+
+spring:
+  application:
+    name: register
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10 #租期更新时间间隔（默认30秒）
+    lease-expiration-duration-in-seconds: 30  #租期到期时间（默认90秒）
+  server:
+    enable-self-preservation: false #启动自我保护
+    eviction-interval-timer-in-ms: 10000 #清理间隔（单位毫秒，默认是60*1000）
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    serviceUrl.defaultZone: http://localhost:${server.port}/eureka/
+    healthcheck.enabled: true #开启健康检查（需要spring-boot-starter-actuator依赖）
